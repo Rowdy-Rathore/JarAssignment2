@@ -1,19 +1,24 @@
 package com.example.jarassignment.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.example.jarassignment.ui.theme.SplashScreenBackgroundColor
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandingScreen(
     toolbarText: String,
@@ -21,8 +26,8 @@ fun LandingScreen(
 ) {
     Scaffold(
         topBar = {
-            SmallTopAppBar(
-                title = { Text(text = toolbarText)} ,
+            TopAppBar(
+                title = { Text(text = toolbarText) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
@@ -32,20 +37,17 @@ fun LandingScreen(
                     }
                 }
             )
-        }
+        },
+        containerColor = Color.Transparent
     ) { padding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .background(SplashScreenBackgroundColor)
                 .padding(padding),
             contentAlignment = Alignment.Center
         ) {
-            Text("Landing Screen Content")
+            Text("Landing Page")
         }
     }
-}
-
-@Composable
-fun SmallTopAppBar(title: @Composable () -> Unit, navigationIcon: @Composable () -> Unit) {
-    TODO("Not yet implemented")
 }
