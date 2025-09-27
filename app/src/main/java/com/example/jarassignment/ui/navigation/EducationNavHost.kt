@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.jarassignment.data.model.ManualBuyEducationData
 import com.example.jarassignment.ui.MainEducationScreen
-import com.example.jarassignment.ui.screens.IntroFadeScreen
+import com.example.jarassignment.ui.screens.IntroScreen
 import com.example.jarassignment.ui.screens.LandingScreen
 import com.example.jarassignment.util.EducationDest
 
@@ -21,7 +21,7 @@ fun EducationNavHost(
         startDestination = EducationDest.Intro.route
     ) {
         composable(EducationDest.Intro.route) {
-            IntroFadeScreen(
+            IntroScreen(
                 title = educationData.introTitle ?: "",
                 subtitle = educationData.introSubtitle ?: "",
                 onFinished = { navController.navigate(EducationDest.Cards.route) }
