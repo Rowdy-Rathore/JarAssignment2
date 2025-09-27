@@ -74,5 +74,5 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation("com.airbnb.android:lottie:6.3.0")
+    implementation(libs.lottie.compose)
 }

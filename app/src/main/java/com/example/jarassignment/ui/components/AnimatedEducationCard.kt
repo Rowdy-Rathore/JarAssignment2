@@ -69,7 +69,7 @@ fun AnimatedEducationCard(
     val collapsedCardHeight = 64.dp
     val collapsedSpacing = 16.dp
     val expandedTopOffset = 20.dp
-    val offscreenOffset = 700.dp
+    val offscreenOffset = 1000.dp
 
     // Final stacked Y offset for collapsed cards
     val expandedIndexOffset = (index * (collapsedCardHeight + collapsedSpacing))
@@ -83,7 +83,7 @@ fun AnimatedEducationCard(
     ) { state ->
         when (state) {
             CardState.Offscreen -> offscreenOffset
-            CardState.Halfscreen -> 200.dp
+            CardState.Halfscreen -> 600.dp
             CardState.Expanding -> expandedTopOffset + expandedIndexOffset
             CardState.CollapsingTilted -> expandedTopOffset + expandedIndexOffset
             CardState.Collapsed -> collapsedIndexOffset
@@ -118,7 +118,7 @@ fun AnimatedEducationCard(
         label = "cardHeight"
     ) { state ->
         when (state) {
-            CardState.Expanding -> 450.dp
+            CardState.Expanding, CardState.Halfscreen -> 450.dp
             CardState.CollapsingTilted, CardState.Collapsed -> collapsedCardHeight
             else -> 300.dp
         }

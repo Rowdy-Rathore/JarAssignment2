@@ -32,7 +32,6 @@ fun EducationNavHost(
             MainEducationScreen(
                 cards = educationData.educationCardList,
                 apiConfig = educationData,
-                actionText = educationData.actionText ?: "",
                 ctaLottie = educationData.ctaLottie ?: "",
                 onNavigateLanding = {
                     navController.navigate(EducationDest.Landing.route)

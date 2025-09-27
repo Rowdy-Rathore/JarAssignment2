@@ -36,6 +36,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -53,18 +54,22 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.jarassignment.ui.components.AnimatedEducationCard
 import kotlinx.coroutines.delay
 import com.example.jarassignment.util.CardState
 import kotlinx.coroutines.launch
 import kotlin.apply
+import androidx.core.graphics.toColorInt
 
 
 @Composable
 fun MainEducationScreen(
     cards: List<EducationCard>,
     apiConfig: ManualBuyEducationData,
-    actionText: String,
     ctaLottie: String,
     onNavigateLanding: () -> Unit
 ) {
@@ -143,9 +148,10 @@ fun MainEducationScreen(
                 onClick = onNavigateLanding,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(24.dp),
+                    .padding(24.dp)
+                    .border(1.dp, Color(apiConfig.saveButtonCta?.strokeColor?.toColorInt() ?: 0), shape = RoundedCornerShape(50)),
                 shape = RoundedCornerShape(50),
-                containerColor = MaterialTheme.colorScheme.primary
+                containerColor = Color(apiConfig.saveButtonCta?.backgroundColor?.toColorInt() ?: 0)
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -154,8 +160,21 @@ fun MainEducationScreen(
                 ) {
                     Spacer(Modifier.width(8.dp))
                     Text(
-                        text = actionText,
-                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
+                        text = apiConfig.saveButtonCta?.text ?: "",
+                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White),
+                        color = Color(apiConfig.saveButtonCta?.textColor?.toColorInt() ?: 1),
+                    )
+
+                    val composition by rememberLottieComposition(
+                        LottieCompositionSpec.Url(ctaLottie)
+                    )
+                    LottieAnimation(
+                        composition = composition,
+                        iterations = LottieConstants.IterateForever,
+                        modifier = Modifier.size(32.dp)
+                            .graphicsLayer {
+                            scaleY = -1f // Flip vertically
+                        }
                     )
                 }
             }
