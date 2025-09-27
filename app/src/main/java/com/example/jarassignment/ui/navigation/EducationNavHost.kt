@@ -1,13 +1,14 @@
 package com.example.jarassignment.ui.navigation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.jarassignment.data.model.ManualBuyEducationData
-import com.example.jarassignment.ui.MainEducationScreen
 import com.example.jarassignment.ui.screens.IntroScreen
 import com.example.jarassignment.ui.screens.LandingScreen
+import com.example.jarassignment.ui.screens.MainEducationScreen
 import com.example.jarassignment.util.EducationDest
 
 @Composable
@@ -16,6 +17,11 @@ fun EducationNavHost(
     educationData: ManualBuyEducationData,
     onExitFlow: () -> Unit
 ) {
+
+    BackHandler {
+        onExitFlow()
+    }
+
     NavHost(
         navController = navController,
         startDestination = EducationDest.Intro.route
