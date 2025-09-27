@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.jarassignment.ui.theme.SplashScreenBackgroundColor
 import com.example.jarassignment.ui.theme.SplashScreenSubTextColor
 import com.example.jarassignment.ui.theme.SplashScreenTextColor
 import kotlinx.coroutines.delay
@@ -49,7 +50,7 @@ fun IntroScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black),
+                .background(SplashScreenBackgroundColor),
             contentAlignment = Alignment.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
